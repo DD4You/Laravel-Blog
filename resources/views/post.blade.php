@@ -26,7 +26,7 @@
             @foreach ($comments as $comment)
                 <div class="comment_box mt-3">
                     <div class="comment">{{ $comment->comment }}</div>
-                    <div class="comment_by">Unknowen</div>
+                    <div class="comment_by">Unknown</div>
                 </div>
             @endforeach
             <!-- Comment End -->

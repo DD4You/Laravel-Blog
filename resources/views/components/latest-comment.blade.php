@@ -6,7 +6,7 @@
                 {{ Str::substr($comment->comment, 0, 125) . '...' }}
             </div>
             <div class="comment_by">
-                Unknowen on <a href="post/{{$comment->slug}}">{{ Str::substr($comment->title, 0, 15).'...' }}</a>
+                Unknown on <a href="post/{{$comment->slug}}">{{ Str::substr($comment->title, 0, 15).'...' }}</a>
             </div>
         </div>
     @endforeach
