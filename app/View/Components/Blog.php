@@ -23,7 +23,7 @@ class Blog extends Component
     public $commentCount = 0;
     public $timeToRead = 0;
     
-    public function __construct($imageLeft, $post, $comment)
+    public function __construct($imageLeft, $post)
     {
         //
         $this->imageLeft = $imageLeft;
@@ -33,7 +33,7 @@ class Blog extends Component
         $this->slug = $post->slug;
         $this->description = Str::substr($post->description, 0, 180). '...';
         $this->category = $post->category;
-        $this->commentCount = $comment->count;
+        $this->commentCount = $post->count;
         $this->timeToRead = round(0.0032 * Str::length($post->description));
     }
 

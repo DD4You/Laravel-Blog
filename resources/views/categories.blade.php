@@ -6,7 +6,7 @@
         <div class="row g-5" data-aos="fade-right">
             @foreach ($categories as $category)
                 <div class="col-md-4 col-sm-6">
-                    <a href="/" class="category">
+                    <a href="category/{{$category->id}}" class="category">
                         <h3 class="name">{{ $category->name }}</h3>
                         <h5 class="post_count">{{ $category->count }}
                             <span>Post</span>

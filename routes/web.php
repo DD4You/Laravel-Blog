@@ -18,7 +18,7 @@ use App\Http\Controllers\HomeController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', [HomeController::class, 'index']);
-// Route::get('/category/{id?}', [HomeController::class, 'index']);
-Route::get('/post/{slug}', [HomeController::class, 'post']);
+Route::get('/', [HomeController::class, 'all_posts']);
+Route::get('/category/{id}', [HomeController::class, 'category_post']);
+Route::get('/post/{slug}', [HomeController::class, 'full_post']);
 Route::get('/categories', [HomeController::class, 'categories']);

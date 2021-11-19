@@ -3,12 +3,16 @@
 <div class="row mt-0 mt-md-5">
     <!-- Posts -->
     <div class="col-lg-8">
-        {{-- {{dd($posts)}} --}}
+        {{-- @if (request()->has('search'))
+            @php
+                $search = request()->query('search');
+            @endphp
+        @endif --}}
         @foreach ($posts as $post)
-                @php
-                    $i = $loop->index;
-                @endphp
-                 <x-Blog imageLeft='{{ $i % 2 == 0 ? true : false }}' :post="$post" :comment="$counts[$i]"/>
+            @php
+                $i = $loop->index;
+            @endphp
+            <x-Blog imageLeft='{{ $i % 2 == 0 ? true : false }}' :post="$post"  />
         @endforeach
         {{ $posts->links('vendor.pagination.custom') }}
     </div>

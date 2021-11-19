@@ -10,29 +10,47 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     //
-    public function index($category = null)
+    public function all_posts(Request $request)
+    {
+        if ($request->exists('search')) {
+            $search = $request->search;
+            $posts = DB::table('posts')
+                ->join('categories', 'posts.category_id', '=', 'categories.id')
+                ->leftJoin('comments', 'posts.id', '=', 'comments.post_id')
+                ->where('posts.title', 'LIKE', '%' . $search . '%')
+                // ->where('posts.description', 'LIKE', '%' . $search . '%')
+                ->select('posts.*', 'categories.name as category', DB::raw('count(comments.id) as count'))
+                ->groupBy('posts.id')
+                ->latest('posts.created_at')
+                ->paginate(5);
+            $posts->appends(['search' => $request->search]);
+        } else {
+            $posts = DB::table('posts')
+                ->join('categories', 'posts.category_id', '=', 'categories.id')
+                ->leftJoin('comments', 'posts.id', '=', 'comments.post_id')
+                ->select('posts.*', 'categories.name as category', DB::raw('count(comments.id) as count'))
+                ->groupBy('posts.id')
+                ->latest('posts.created_at')
+                ->paginate(5);
+        }
+
+        return view('welcome', compact('posts'));
+    }
+    public function category_post($category)
     {
         $posts = DB::table('posts')
             ->join('categories', 'posts.category_id', '=', 'categories.id')
-            ->select('posts.*', 'categories.name as category')
-            ->limit(10)
-            ->latest('posts.created_at')
-            // ->get();
-            ->paginate(5);
-
-        $counts = DB::table('posts')
             ->leftJoin('comments', 'posts.id', '=', 'comments.post_id')
-            ->select('posts.id', DB::raw('count(comments.id) as count'))
+            ->where('posts.category_id', '=', $category)
+            ->select('posts.*', 'categories.name as category', DB::raw('count(comments.id) as count'))
             ->groupBy('posts.id')
             ->limit(10)
             ->latest('posts.created_at')
-            // ->get();
             ->paginate(5);
-
-        return view('welcome', compact('posts', 'counts'));
+        return view('welcome', compact('posts'));
     }
 
-    public function post($slug)
+    public function full_post($slug)
     {
         $post = Post::where('slug', $slug)->first();
         return view('post', compact('post'));

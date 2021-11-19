@@ -3,7 +3,7 @@
     <ul>
         @foreach ($categories as $category)
             <li>
-                <a href="/"><i class="fas fa-band-aid"></i> {{$category->name}} ({{$category->count}})</a>
+                <a href="/category/{{$category->id}}"><i class="fas fa-band-aid"></i> {{$category->name}} ({{$category->count}})</a>
             </li>
         @endforeach
     </ul>
