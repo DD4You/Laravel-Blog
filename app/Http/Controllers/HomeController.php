@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -53,7 +54,13 @@ class HomeController extends Controller
     public function full_post($slug)
     {
         $post = Post::where('slug', $slug)->first();
-        return view('post', compact('post'));
+        $comments = DB::table('comments')
+        ->join('posts', 'comments.post_id', '=', 'posts.id')
+        ->where('posts.slug','=',$slug)
+        ->select('comments.comment')
+        ->latest('comments.created_at')
+        ->get();
+        return view('post', compact('post', 'comments'));
     }
     public function categories()
     {
@@ -63,5 +70,14 @@ class HomeController extends Controller
             ->groupBy('categories.id')
             ->get();
         return view('categories', compact('categories'));
+    }
+
+    public function add_comment(Request $request)
+    {
+        $data = new Comment;
+        $data->post_id = $request->post_id;
+        $data->comment = $request->comment;
+        $data->save();
+        return redirect()->back();
     }
 }

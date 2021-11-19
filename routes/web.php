@@ -22,3 +22,4 @@ Route::get('/', [HomeController::class, 'all_posts']);
 Route::get('/category/{id}', [HomeController::class, 'category_post']);
 Route::get('/post/{slug}', [HomeController::class, 'full_post']);
 Route::get('/categories', [HomeController::class, 'categories']);
+Route::post('/post', [HomeController::class, 'add_comment']);

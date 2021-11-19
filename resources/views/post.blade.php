@@ -4,45 +4,31 @@
     <!-- Posts -->
     <div class="col-lg-8">
         <div class="full_post mt-5">
-            <img src="assets/image/{{$post->thumbnail}}" alt="" data-aos="zoom-in" data-aos-easing="ease-out-back">
+            <img src="assets/image/{{ $post->thumbnail }}" alt="" data-aos="zoom-in" data-aos-easing="ease-out-back">
             <h2 class="post_title" data-aos="fade-right"><span class="text">
-                    <div>{{$post->title}}</div>
+                    <div>{{ $post->title }}</div>
                 </span></h2>
-            <div class="content" data-aos="fade-up">{{$post->description}}</div>
+            <div class="content" data-aos="fade-up">{{ $post->description }}</div>
         </div>
         <!-- Post Comment -->
         <div class="col-md-12 mt-5 comment_input_box">
             <h4 class="heading" data-aos="fade-right">Post Your Comments</h4>
-            <form action="" method="post" data-aos="fade-left">
-                <textarea class="form-control" rows="6" aria-label="With textarea"
-                    placeholder="Write your comment..."></textarea>
-                <button class="post float-end">Post Comment <i class="fas fa-paper-plane"></i></button>
+            <form action="/post" method="post" data-aos="fade-left">
+                @csrf
+                <input type="hidden" name="post_id" value="{{$post->id}}">
+                <textarea class="form-control" name="comment" rows="6" aria-label="With textarea"
+                    placeholder="Write your comment..." required></textarea>
+                <button class="post float-end" type="submit">Post Comment <i class="fas fa-paper-plane"></i></button>
             </form>
         </div>
         <div class="col-md-12 full_post_comment" data-aos="fade-down-right">
             <!-- Comment -->
-            <div class="comment_box mt-3">
-                <div class="comment">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Reprehenderit, inventore Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Molestias,
-                    nobis.
+            @foreach ($comments as $comment)
+                <div class="comment_box mt-3">
+                    <div class="comment">{{ $comment->comment }}</div>
+                    <div class="comment_by">Unknowen</div>
                 </div>
-                <div class="comment_by">
-                    Vinay Singh
-                </div>
-            </div>
-            <div class="comment_box mt-3">
-                <div class="comment">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Reprehenderit, inventore Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Molestias,
-                    nobis.
-                </div>
-                <div class="comment_by">
-                    Unknowen
-                </div>
-            </div>
+            @endforeach
             <!-- Comment End -->
         </div>
         <!-- Post Comment End -->
