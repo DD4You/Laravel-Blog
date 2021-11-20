@@ -7,6 +7,7 @@
             <a href="{{ $paginator->previousPageUrl() }}" class="previous-btn"><i class="far fa-arrow-left"></i></a>
         @endif
 
+
         {{-- Next Page Link --}}
         @if ($paginator->hasMorePages())
             <a href="{{ $paginator->nextPageUrl() }}" class="next-btn"><i class="far fa-arrow-right"></i></a>

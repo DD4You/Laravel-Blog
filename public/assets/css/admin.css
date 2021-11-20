@@ -1,0 +1,251 @@
+html {
+  --bg: rgb(40, 44, 52);
+  --active-bg: rgb(44, 50, 60);
+  --card-bg: rgb(32, 35, 42);
+  --text-primary: #fff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  scrollbar-width: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+*::-webkit-scrollbar {
+  width: 0;
+}
+
+body {
+  background: var(--bg);
+}
+
+.theme-settings {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 9999;
+  -webkit-filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.2));
+          filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.2));
+  filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=1, Color='rgba(0, 0, 0, 0.2)')";
+}
+
+.theme-settings .button {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+  background: rgba(151, 151, 151, 0.5);
+}
+
+.theme-settings .button::before {
+  content: "";
+  position: absolute;
+  width: 42px;
+  height: 120%;
+  background: -webkit-gradient(linear, left top, left bottom, from(yellow), to(green));
+  background: linear-gradient(yellow, green);
+  -webkit-animation: fa-spin 1s linear infinite;
+          animation: fa-spin 1s linear infinite;
+  z-index: -1;
+}
+
+.theme-settings .button::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  background: var(--bg);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.theme-settings .button span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: var(--active-bg);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  color: var(--text-primary);
+}
+
+.table-dark {
+  --bs-table-bg: transparent;
+}
+
+@-webkit-keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+.wrapper {
+  position: relative;
+}
+
+.wrapper aside {
+  width: 220px;
+  min-height: 100%;
+  position: fixed;
+  background: var(--card-bg);
+}
+
+.wrapper aside ul {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.wrapper aside ul li {
+  position: relative;
+  list-style: none;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 40px;
+  padding-left: 10px;
+  margin-bottom: 3px;
+}
+
+.wrapper aside ul li.active, .wrapper aside ul li:hover {
+  background: var(--active-bg);
+  border-radius: 5px;
+  -webkit-filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.2));
+          filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.2));
+  filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=1, Color='rgba(0, 0, 0, 0.2)')";
+}
+
+.wrapper aside ul li a {
+  display: block;
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  font-weight: 400;
+  text-decoration: none;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.wrapper aside ul li a:hover {
+  color: var(--text-primary);
+}
+
+.wrapper aside ul li a i {
+  min-width: 30px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.wrapper aside .logout {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  padding: 0 10px;
+  border-radius: 4px;
+  border: 1px solid var(--active-bg);
+}
+
+.wrapper main {
+  min-height: 100%;
+  padding: 20px;
+  width: calc(100% - 220px);
+  margin-left: auto;
+  color: var(--text-primary);
+}
+
+@media screen and (min-width: 320px) and (max-width: 480px) {
+  .wrapper aside {
+    width: 70px;
+  }
+  .wrapper aside li a span {
+    position: relative;
+    -webkit-filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.2));
+            filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.2));
+    filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=1, Color='rgba(0, 0, 0, 0.2)')";
+    opacity: 0;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    background: var(--active-bg);
+    border-radius: 5px;
+    padding: 0 8px;
+    margin-left: 16px;
+  }
+  .wrapper aside li a span::before {
+    content: "";
+    position: absolute;
+    background: var(--active-bg);
+    width: 12px;
+    height: 12px;
+    -webkit-transform: translateY(-50%) rotate(45deg);
+            transform: translateY(-50%) rotate(45deg);
+    top: 50%;
+    left: -6px;
+    z-index: -1;
+  }
+  .wrapper aside li:hover a span {
+    opacity: 1;
+  }
+  .wrapper aside .logout {
+    font-size: 1.2rem;
+    padding: 0 8px;
+  }
+  .wrapper aside .logout span {
+    display: none;
+  }
+  .wrapper main {
+    width: calc(100% - 70px);
+  }
+}
+/*# sourceMappingURL=admin.css.map */

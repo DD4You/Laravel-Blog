@@ -3,11 +3,6 @@
 <div class="row mt-0 mt-md-5">
     <!-- Posts -->
     <div class="col-lg-8">
-        {{-- @if (request()->has('search'))
-            @php
-                $search = request()->query('search');
-            @endphp
-        @endif --}}
         @foreach ($posts as $post)
             @php
                 $i = $loop->index;
