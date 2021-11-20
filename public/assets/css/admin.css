@@ -2,7 +2,9 @@ html {
   --bg: rgb(40, 44, 52);
   --active-bg: rgb(44, 50, 60);
   --card-bg: rgb(32, 35, 42);
+  --border-color: #404040;
   --text-primary: #fff;
+  --action-color:#009aff;
 }
 
 * {
@@ -91,6 +93,31 @@ body {
 
 .table-dark {
   --bs-table-bg: transparent;
+}
+
+.page-link {
+  background-color: transparent;
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.page-link:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.page-item.active .page-link {
+  background-color: var(--action-color);
+  border-color: var(--action-color);
+}
+
+.df_jcsb {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 @-webkit-keyframes fa-spin {

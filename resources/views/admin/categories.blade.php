@@ -11,16 +11,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($data as $data)
+                    @foreach ($data as $item)
                         <tr>
-                            <td>{{ $data->id }}</td>
-                            <td>{{ $data->name }}</td>
+                            <td>{{ $item->id }}</td>
+                            <td>{{ $item->name }}</td>
                             <td>DELETE</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
+        {{ $data->links('vendor.pagination.admin-custom') }}
     </div>
 </main>
 <x-AdminFooter />

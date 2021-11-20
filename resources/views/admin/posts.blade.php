@@ -12,19 +12,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($data as $data)
+                    @foreach ($data as $item)
                         <tr>
-                            <td>{{ $data->id }}</td>
+                            <td>{{ $item->id }}</td>
                             <td>
-                                <img src="{{asset('assets/image/'.$data->thumbnail)}}" width="80" alt="thumbnail">
+                                <img src="{{asset('assets/image/'.$item->thumbnail)}}" width="80" alt="thumbnail">
                             </td>
-                            <td>{{ $data->title }}</td>
+                            <td>{{ $item->title }}</td>
                             <td>DELETE</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
+        {{ $data->links('vendor.pagination.admin-custom') }}
     </div>
 </main>
 <x-AdminFooter />

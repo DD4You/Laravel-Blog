@@ -52,12 +52,12 @@ class AdminController extends Controller
 
     public function categories()
     {
-        $data = Category::all();
+        $data = Category::paginate(5);
         return view('admin.categories', compact('data'));
     }
     public function posts()
     {
-        $data = Post::all();
+        $data = Post::paginate(4);
         return view('admin.posts', compact('data'));
     }
 }

@@ -4,7 +4,9 @@ html {
   --bg: rgb(40, 44, 52);
   --active-bg: rgb(44, 50, 60);
   --card-bg: rgb(32, 35, 42);
+  --border-color: #404040;
   --text-primary: #fff;
+  --action-color:#009aff;
 }
 * {
   margin: 0;
@@ -87,6 +89,25 @@ body {
 }
 .table-dark {
   --bs-table-bg: transparent;
+}
+
+.page-link{
+  background-color: transparent;
+  border-color: var(--border-color);
+  color: var(--text-primary);
+  &:focus{
+    box-shadow: none;
+  }
+}
+.page-item.active .page-link{
+  background-color: var(--action-color);
+  border-color: var(--action-color);
+}
+
+
+.df_jcsb {
+  display: flex;
+  justify-content: space-between;
 }
 
 @keyframes fa-spin {
