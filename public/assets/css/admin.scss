@@ -17,6 +17,9 @@ html {
   &::-webkit-scrollbar {
     width: 0;
   }
+  &:focus{
+    box-shadow: none !important;
+  }
 }
 body {
   background: var(--bg);
@@ -103,8 +106,25 @@ body {
   background-color: var(--action-color);
   border-color: var(--action-color);
 }
+.modal-content{
+  background-color: var(--bg);
+}
+.form-label{
+  color: var(--text-primary);
+}
+.form-control{
+  color: var(--text-primary);
+  background-color: transparent;
+  &:focus{
+    color: var(--text-primary);
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
 
-
+.text{
+  color: var(--text-primary);
+}
 .df_jcsb {
   display: flex;
   justify-content: space-between;

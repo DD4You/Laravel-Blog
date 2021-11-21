@@ -20,6 +20,11 @@ html {
   width: 0;
 }
 
+*:focus {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
 body {
   background: var(--bg);
 }
@@ -109,6 +114,30 @@ body {
 .page-item.active .page-link {
   background-color: var(--action-color);
   border-color: var(--action-color);
+}
+
+.modal-content {
+  background-color: var(--bg);
+}
+
+.form-label {
+  color: var(--text-primary);
+}
+
+.form-control {
+  color: var(--text-primary);
+  background-color: transparent;
+}
+
+.form-control:focus {
+  color: var(--text-primary);
+  background-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.text {
+  color: var(--text-primary);
 }
 
 .df_jcsb {
