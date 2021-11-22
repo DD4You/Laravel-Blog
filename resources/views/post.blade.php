@@ -4,7 +4,7 @@
     <!-- Posts -->
     <div class="col-lg-8">
         <div class="full_post mt-5">
-            <img src="assets/image/{{ $post->thumbnail }}" alt="" data-aos="zoom-in" data-aos-easing="ease-out-back">
+            <img src="uploads/post/{{ $post->thumbnail }}" alt="" data-aos="zoom-in" data-aos-easing="ease-out-back">
             <h2 class="post_title" data-aos="fade-right"><span class="text">
                     <div>{{ $post->title }}</div>
                 </span></h2>

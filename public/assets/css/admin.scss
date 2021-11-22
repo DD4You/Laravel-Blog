@@ -106,13 +106,17 @@ body {
   background-color: var(--action-color);
   border-color: var(--action-color);
 }
+.modal-title{
+  color: var(--text-primary);
+}
 .modal-content{
   background-color: var(--bg);
 }
 .form-label{
   color: var(--text-primary);
 }
-.form-control{
+.form-control,
+.form-select{
   color: var(--text-primary);
   background-color: transparent;
   &:focus{
@@ -121,6 +125,10 @@ body {
     box-shadow: none;
   }
 }
+select option {
+  background: var(--bg);
+  color: var(--text-primary);
+}
 
 .text{
   color: var(--text-primary);
@@ -128,6 +136,9 @@ body {
 .df_jcsb {
   display: flex;
   justify-content: space-between;
+}
+a{
+  text-decoration: none;
 }
 
 @keyframes fa-spin {

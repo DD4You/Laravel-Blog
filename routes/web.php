@@ -15,10 +15,6 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 Route::get('/', [HomeController::class, 'all_posts']);
 Route::get('/category/{id}', [HomeController::class, 'category_post']);
 Route::get('/post/{slug}', [HomeController::class, 'full_post']);
@@ -26,17 +22,25 @@ Route::get('/categories', [HomeController::class, 'categories']);
 Route::post('/post', [HomeController::class, 'add_comment']);
 
 
-Route::prefix('auth')->group(function () {
-    Route::get('/logout', [AdminController::class, 'logout'])->name('auth.logout');
-    Route::post('/check', [AdminController::class, 'check'])->name('auth.check');
-});
-
-Route::group(['prefix' => 'auth', 'middleware' => ['AuthCheck']], function () {
-    Route::get('/login', [AdminController::class, 'login']);
+Route::prefix('admin')->group(function () {
+    Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
+    Route::post('/check', [AdminController::class, 'check'])->name('admin.check');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['AuthCheck']], function () {
+    Route::get('/login', [AdminController::class, 'login']);
+
     Route::get('/dashboard', [AdminController::class, 'dashboard']);
+
+    Route::post('/manage_category', [AdminController::class, 'manage_category']);
     Route::get('/categories', [AdminController::class, 'categories']);
+    Route::get('/delete_category/{id}', [AdminController::class, 'delete_category']);
+    
+    Route::post('/create_post', [AdminController::class, 'create_post']);
+    Route::post('/update_post', [AdminController::class, 'update_post']);
+
     Route::get('/posts', [AdminController::class, 'posts']);
+    Route::get('/delete_post/{id}', [AdminController::class, 'delete_post']);
+    Route::get('/add_post', [AdminController::class, 'add_post']);
+    Route::get('/edit_post/{id}', [AdminController::class, 'edit_post']);
 });

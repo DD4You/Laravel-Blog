@@ -3,10 +3,11 @@
     <div class="mt-5">
         <div class="container-fluid">
             <div class="row">
+                @if (Session::get('msg'))
+                    <span class="text-info text-center">{{ Session::get('msg') }}</span>
+                @endif
                 <div class="col-md-12 text-end">
-                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#formModal"
-                        data-title="Add">New
-                        Post</button>
+                    <a href="{{ url('admin/add_post') }}" class="btn btn-primary btn-sm">New Post</a>
                 </div>
                 <div class="col-md-12">
                     <div class="table-responsive">
@@ -28,7 +29,12 @@
                                                 alt="thumbnail">
                                         </td>
                                         <td>{{ $item->title }}</td>
-                                        <td>DELETE</td>
+                                        <td>
+                                            <a href="{{ url('/admin/delete_post', $item->id) }}"
+                                                class="dd-icon dd-delete text-danger fs-5"
+                                                onclick="return confirm('Are you sure to delete?')"></a>
+                                            <a href="{{url('admin/edit_post', $item->id)}}" class="dd-icon dd-edit text-primary fs-5"></a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

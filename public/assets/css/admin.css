@@ -116,6 +116,10 @@ body {
   border-color: var(--action-color);
 }
 
+.modal-title {
+  color: var(--text-primary);
+}
+
 .modal-content {
   background-color: var(--bg);
 }
@@ -124,16 +128,23 @@ body {
   color: var(--text-primary);
 }
 
-.form-control {
+.form-control,
+.form-select {
   color: var(--text-primary);
   background-color: transparent;
 }
 
-.form-control:focus {
+.form-control:focus,
+.form-select:focus {
   color: var(--text-primary);
   background-color: transparent;
   -webkit-box-shadow: none;
           box-shadow: none;
+}
+
+select option {
+  background: var(--bg);
+  color: var(--text-primary);
 }
 
 .text {
@@ -147,6 +158,10 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+a {
+  text-decoration: none;
 }
 
 @-webkit-keyframes fa-spin {

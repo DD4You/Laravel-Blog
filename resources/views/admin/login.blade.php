@@ -121,7 +121,7 @@
 <body>
     <div class="container">
         <h1>Login</h1>
-        <form action="{{route('auth.check')}}" method="post">
+        <form action="{{route('admin.check')}}" method="post">
 
             @if (Session::get('fail'))
                 <span class="error">{{Session::get('fail')}}</span>

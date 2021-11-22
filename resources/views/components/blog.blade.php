@@ -4,7 +4,7 @@
             <div class="row tag_date" tag-date="{{ date('M d, Y', strtotime($postDate)) }}">
                 <div class="col-md-5 text-center">
                     <a href="post/{{ $slug }}">
-                        <img src="assets/image/{{ $thumbnail }}" class="post_image" alt=""
+                        <img width="285" height="200" src="uploads/post/{{ $thumbnail }}" class="post_image" alt=""
                             style="--b: 53% 47% 74% 26% / 32% 30% 70% 68%">
                     </a>
                 </div>
@@ -61,7 +61,7 @@
                 </div>
                 <div class="col-md-5 text-center">
                     <a href="post/{{ $slug }}">
-                        <img src="assets/image/{{ $thumbnail }}" class="post_image" alt=""
+                        <img width="285" height="200" src="uploads/post/{{ $thumbnail }}" class="post_image" alt=""
                             style="--b: 53% 47% 74% 26% / 32% 30% 70% 68%">
                     </a>
                 </div>
