@@ -111,9 +111,12 @@ class AdminController extends Controller
     }
     public function edit_post($id)
     {
-        $categories = Category::all();
+        // $categories = Category::all();
         $post = Post::find($id);
-        return view('admin.edit_post', compact('categories', 'post'));
+
+        $data['categories'] = Category::all();
+        $data['post'] = Post::find($id);
+        return view('admin.edit_post', compact('data'));
     }
 
     public function create_post(Request $request)
@@ -121,7 +124,7 @@ class AdminController extends Controller
         // Validate requests
         $request->validate([
             'category_id' => 'required',
-            'thumbnail' => 'required|mimes:png,jpg,jpeg|max:2048',
+            'thumbnail' => 'required|mimes:png,jpg,jpeg|max:2048|dimensions:ratio=2/1',
             'title' => 'required',
             'description' => 'required'
         ]);
@@ -139,8 +142,36 @@ class AdminController extends Controller
 
         return back()->with('msg', 'New Post Added');
     }
-    public function update_post()
+    public function update_post(Request $request)
     {
-        # code...
+        // Validate requests
+        $request->validate([
+            'category_id' => 'required',
+            'title' => 'required',
+            'description' => 'required'
+        ]);
+
+        if ($request->thumbnail) {
+            $request->validate([
+                'thumbnail' => 'required|mimes:png,jpg,jpeg|max:2048|dimensions:ratio=2/1',
+            ]);
+            $data = Post::find($request->id);
+            # Delete Old Image
+            unlink("uploads/post/" . $data->thumbnail);
+            # Update Image
+            $thumbnail = time() . '_' . $request->thumbnail->getClientOriginalName();
+            $request->thumbnail->move('uploads/post', $thumbnail);
+            $data->thumbnail = $thumbnail;
+        } else {
+            $data = Post::find($request->id);
+        }
+
+        $data->category_id = $request->category_id;
+        $data->title = $request->title;
+        $data->slug = SlugService::createSlug(Post::class, 'slug', $request->title);
+        $data->description = $request->description;
+        $data->save();
+
+        return back()->with('msg', 'Post Updated');
     }
 }
