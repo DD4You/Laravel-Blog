@@ -12,7 +12,7 @@
                             @endif
                             <div class="col">
                                 <label class="form-label">Category Name</label>
-                                <select name="category_id" class="form-select">
+                                <select name="category_id" class="form-select form-select-sm">
                                     <option value="">Select Category</option>
                                     @foreach ($categories as $category)
                                         @if (old('category_id') == $category->id)
@@ -27,19 +27,19 @@
                             </div>
                             <div class="col">
                                 <label class="form-label">Post Thumbnail</label>
-                                <input type="file" class="form-control" name="thumbnail">
+                                <input type="file" class="form-control form-control-sm" name="thumbnail">
                                 <span class="text-danger">@error('thumbnail') {{ $message }} @enderror</span>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Post Titel</label>
-                            <input type="text" class="form-control" name="title" placeholder="Enter category name"
+                            <input type="text" class="form-control form-control-sm" name="title" placeholder="Enter category name"
                                 value="{{ old('title') }}">
                             <span class="text-danger">@error('title') {{ $message }} @enderror</span>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Post Description</label>
-                            <textarea class="form-control" name="description" placeholder="description" cols="30"
+                            <textarea class="ckeditor form-control" name="description" placeholder="description" cols="30"
                                 rows="10">{{ old('description') }}</textarea>
                             <span class="text-danger">@error('description') {{ $message }} @enderror</span>
                         </div>
@@ -53,3 +53,9 @@
     </div>
 </main>
 <x-AdminFooter />
+<script src="{{asset('assets/ckeditor/ckeditor.js')}}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.ckeditor').ckeditor();
+    });
+</script>

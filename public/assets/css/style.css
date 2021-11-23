@@ -111,6 +111,10 @@ ul {
   color: var(--text);
 }
 
+a > img {
+  outline: none;
+}
+
 .previous-btn,
 .next-btn {
   display: -webkit-box;
@@ -142,6 +146,10 @@ ul {
 .previous-btn.disabled,
 .next-btn.disabled {
   background: gray;
+}
+
+.navbar .navbar-brand img {
+  outline: none;
 }
 
 .navbar .navbar-toggler {

@@ -8,7 +8,7 @@
             <h2 class="post_title" data-aos="fade-right"><span class="text">
                     <div>{{ $post->title }}</div>
                 </span></h2>
-            <div class="content" data-aos="fade-up">{{ $post->description }}</div>
+            <div class="content" data-aos="fade-up">{!! html_entity_decode($post->description) !!}</div>
         </div>
         <!-- Post Comment -->
         <div class="col-md-12 mt-5 comment_input_box">

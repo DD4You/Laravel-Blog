@@ -16,7 +16,7 @@
                     </h2>
                     <div>{{ $category }} | {{ $commentCount }} Comments | {{ $timeToRead }} to read</div>
                     <div class="content justify">
-                        {{ $description }}
+                        {!! $description !!}
                     </div>
                     <div class="df_jcsb">
                         <div class="social_icons">

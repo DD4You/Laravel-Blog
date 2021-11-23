@@ -9,7 +9,7 @@
             <div class="content">
                 <a href="post/{{$blog->slug}}" class="post_title">{{Str::substr($blog->title, 0, 35). '...'}}</a>
                 <div class="description">
-                    {{Str::substr($blog->description, 0, 68). '...'}} 
+                    {!! Str::substr($blog->description, 0, 68). '...' !!} 
                 </div>
             </div>
         </div>
