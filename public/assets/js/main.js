@@ -3,18 +3,18 @@ let theme_Mode = document.getElementById("theme_Mode");
 
 if (theme === "dark") {
   document.body.classList.toggle("dark-theme");
-  theme_Mode.src = "assets/image/sun.png";
+  theme_Mode.src = "https://dd4you.in/demos/blog/assets/image/sun.png";
 } else {
-  theme_Mode.src = "assets/image/moon.png";
+  theme_Mode.src = "https://dd4you.in/demos/blog/assets/image/moon.png";
 }
 
 theme_Mode.onclick = () => {
   document.body.classList.toggle("dark-theme");
   if (document.body.classList.contains("dark-theme")) {
-    theme_Mode.src = "assets/image/sun.png";
+    theme_Mode.src = "https://dd4you.in/demos/blog/assets/image/sun.png";
     localStorage.setItem("theme", "dark");
   } else {
-    theme_Mode.src = "assets/image/moon.png";
+    theme_Mode.src = "https://dd4you.in/demos/blog/assets/image/moon.png";
     localStorage.setItem("theme", "light");
   }
 };

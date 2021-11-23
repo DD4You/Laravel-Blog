@@ -12,9 +12,9 @@
         <div class="col-md-4">
             <h5>Useful Links</h5>
             <ul class="list_style">
-                <li><a href="categories">Categories</a></li>
-                <li><a href="#">Terms and conditions</a></li>
-                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="{{url('categories')}}">Categories</a></li>
+                <li><a href="{{url('/')}}">Terms and conditions</a></li>
+                <li><a href="{{url('/')}}">Privacy Policy</a></li>
             </ul>
         </div>
         <div class="col-md-4">
@@ -36,7 +36,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="{{asset('assets/js/main.js')}}"></script>
 </body>
 
 </html>

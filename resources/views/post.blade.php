@@ -4,7 +4,7 @@
     <!-- Posts -->
     <div class="col-lg-8">
         <div class="full_post mt-5">
-            <img src="uploads/post/{{ $post->thumbnail }}" alt="" data-aos="zoom-in" data-aos-easing="ease-out-back">
+            <img src="{{asset('uploads/post/' . $post->thumbnail)}}" alt="" data-aos="zoom-in" data-aos-easing="ease-out-back">
             <h2 class="post_title" data-aos="fade-right"><span class="text">
                     <div>{{ $post->title }}</div>
                 </span></h2>
@@ -13,7 +13,7 @@
         <!-- Post Comment -->
         <div class="col-md-12 mt-5 comment_input_box">
             <h4 class="heading" data-aos="fade-right">Post Your Comments</h4>
-            <form action="/post" method="post" data-aos="fade-left">
+            <form action="{{url('/post')}}" method="post" data-aos="fade-left">
                 @csrf
                 <input type="hidden" name="post_id" value="{{$post->id}}">
                 <textarea class="form-control" name="comment" rows="6" aria-label="With textarea"
