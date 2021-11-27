@@ -29,9 +29,9 @@
     <div class="wrapper">
         <aside>
             <ul class="mt-4">
-                <li class="{{ (request()->segment(2) == 'dashboard') ? 'active' : '' }}"><a href="/admin/dashboard"><i class="dd-icon dd-dashboard"></i> <span>Dashboard</span></a></li>
-                <li class="{{ (request()->segment(2) == 'categories') ? 'active' : '' }}"><a href="/admin/categories"><i class="dd-icon dd-category"></i> <span>Category</span></a></li>
-                <li class="{{ (request()->segment(2) == 'posts') ? 'active' : '' }}"><a href="/admin/posts"><i class="dd-icon dd-post"></i> <span>Posts</span></a></li>
+                <li class="{{ (request()->segment(2) == 'dashboard') ? 'active' : '' }}"><a href="{{url('admin/dashboard')}}"><i class="dd-icon dd-dashboard"></i> <span>Dashboard</span></a></li>
+                <li class="{{ (request()->segment(2) == 'categories') ? 'active' : '' }}"><a href="{{url('admin/categories')}}"><i class="dd-icon dd-category"></i> <span>Category</span></a></li>
+                <li class="{{ (request()->segment(2) == 'posts') ? 'active' : '' }}"><a href="{{url('admin/posts')}}"><i class="dd-icon dd-post"></i> <span>Posts</span></a></li>
             </ul>
 
             <a href="{{route('admin.logout')}}" class="logout"><i class="dd-icon dd-logout"></i> <span>Logout</span></a>
