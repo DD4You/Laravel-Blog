@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use App\Models\User;
 
 class AdminHeader extends Component
 {
@@ -11,9 +12,16 @@ class AdminHeader extends Component
      *
      * @return void
      */
+
+     public $name;
+     public $email;
+
     public function __construct()
     {
         //
+        $data = User::where('id', '=', session('LoggedUser'))->first();
+        $this->name = $data->name;
+        $this->email = $data->email;
     }
 
     /**

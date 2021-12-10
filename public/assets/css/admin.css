@@ -4,7 +4,7 @@ html {
   --card-bg: rgb(32, 35, 42);
   --border-color: #404040;
   --text-primary: #fff;
-  --action-color:#009aff;
+  --action-color: #009aff;
 }
 
 * {
@@ -186,6 +186,19 @@ a {
   }
 }
 
+.card {
+  background: var(--active-bg);
+  -webkit-filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.2));
+          filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.2));
+  filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=1, Color='rgba(0, 0, 0, 0.2)')";
+}
+
+.card .total_count {
+  font-weight: bolder;
+  font-size: 80px;
+  margin-right: 16px;
+}
+
 .wrapper {
   position: relative;
 }
@@ -195,6 +208,12 @@ a {
   min-height: 100%;
   position: fixed;
   background: var(--card-bg);
+}
+
+.wrapper aside .user_info {
+  color: var(--text-primary);
+  text-align: center;
+  margin-top: 40px;
 }
 
 .wrapper aside ul {
@@ -279,6 +298,9 @@ a {
 @media screen and (min-width: 320px) and (max-width: 480px) {
   .wrapper aside {
     width: 70px;
+  }
+  .wrapper aside .user_info p {
+    display: none;
   }
   .wrapper aside li a span {
     position: relative;

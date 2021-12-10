@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use Cviebrock\EloquentSluggable\Services\SlugService;
@@ -15,7 +16,10 @@ class AdminController extends Controller
     //
     public function dashboard()
     {
-        $data = User::where('id', '=', session('LoggedUser'))->first();
+        // $data = User::where('id', '=', session('LoggedUser'))->first();
+        $data['posts'] = Post::all()->count();
+        $data['categories'] = Category::all()->count();
+        $data['comments'] = Comment::all()->count();
         return view('admin.dashboard', compact('data'));
     }
 
