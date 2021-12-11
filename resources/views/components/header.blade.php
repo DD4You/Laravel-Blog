@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.4/css/all.css" />
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}" />
-    <title>My Blog</title>
 
+    <x-SeoMetaTags />
 
 </head>
 

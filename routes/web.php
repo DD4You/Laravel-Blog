@@ -25,6 +25,11 @@ Route::post('/post', [HomeController::class, 'add_comment']);
 Route::prefix('admin')->group(function () {
     Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
     Route::post('/check', [AdminController::class, 'check'])->name('admin.check');
+
+    Route::get('/forgot', [AdminController::class, 'forgot']);
+    Route::post('/forgot_password', [AdminController::class, 'forgot_password'])->name('admin.forgot_password');
+
+    Route::get('/reset', [AdminController::class, 'reset']);
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['AuthCheck']], function () {
@@ -35,7 +40,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['AuthCheck']], function () {
     Route::post('/manage_category', [AdminController::class, 'manage_category']);
     Route::get('/categories', [AdminController::class, 'categories']);
     Route::get('/delete_category/{id}', [AdminController::class, 'delete_category']);
-    
+
     Route::post('/create_post', [AdminController::class, 'create_post']);
     Route::post('/update_post', [AdminController::class, 'update_post']);
 

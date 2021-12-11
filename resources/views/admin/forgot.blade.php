@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Forgot Password</title>
     <style>
         :root {
             --bg: #282c34;
@@ -40,6 +40,7 @@
         h1 {
             color: var(--text-color);
             text-align: center;
+            font-size: 30px;
         }
 
         form {
@@ -72,7 +73,8 @@
 
         .login-btn {
             width: 100%;
-            text-align: right;
+            text-align: center;
+            margin-top: 16px;
         }
 
         .login-btn button {
@@ -85,64 +87,45 @@
             cursor: pointer;
             transition: 0.5s;
         }
-        .login-btn button:hover{
+
+        .login-btn button:hover {
             background: var(--text-color);
             color: var(--action-color);
         }
 
-        .forgot-password {
-            margin-top: 8px;
-        }
-
-        .forgot-password a {
-            color: var(--action-color);
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        .register-link {
-            font-size: 14px;
-            margin-top: 20px;
-            color: var(--text-color);
-        }
-
-        .register-link a {
-            color: var(--action-color);
-            text-decoration: none;
-        }
-        .error{
+        .error {
             color: red;
             margin-top: 4px;
             font-size: 15px;
         }
+        .info {
+            color: var(--action-color);
+            margin-top: 4px;
+            font-size: 15px;
+        }
+
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1>Login</h1>
-        <form action="{{route('admin.check')}}" method="post">
+        <h1>Forgot Password</h1>
+        <form action="{{ route('admin.forgot_password') }}" method="post">
 
-            @if (Session::get('fail'))
-                <span class="error">{{Session::get('fail')}}</span>
+            @if (Session::get('msg'))
+                <span class="info">{{ Session::get('msg') }}</span>
             @endif
+
 
             @csrf
             <div class="input-group">
                 <label for="email">Email ID</label>
-                <input type="email" id="email" name="email" placeholder="Enter email id" value="admin@test.com" >
-                <span class="error">@error('email') {{$message}} @enderror</span>
+                <input type="email" id="email" name="email" placeholder="Enter your email" value="{{ old('email') }}">
+                <span class="error">@error('email') {{ $message }} @enderror</span>
             </div>
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" value="12345678" placeholder="Enter password" >
-                <span class="error">@error('password') {{$message}} @enderror</span>
-            </div>
-            <div class="forgot-password">
-                <a href="{{url ('admin/forgot')}}">Forgot password?</a>
-            </div>
+
             <div class="login-btn">
-                <button>Login</button>
+                <button>Send Password Reset Link</button>
             </div>
         </form>
     </div>

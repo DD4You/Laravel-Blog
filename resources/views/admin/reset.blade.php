@@ -72,7 +72,8 @@
 
         .login-btn {
             width: 100%;
-            text-align: right;
+            text-align: center;
+            margin-top: 16px;
         }
 
         .login-btn button {
@@ -120,7 +121,7 @@
 
 <body>
     <div class="container">
-        <h1>Login</h1>
+        <h1>Reset Password</h1>
         <form action="{{route('admin.check')}}" method="post">
 
             @if (Session::get('fail'))
@@ -130,19 +131,22 @@
             @csrf
             <div class="input-group">
                 <label for="email">Email ID</label>
-                <input type="email" id="email" name="email" placeholder="Enter email id" value="admin@test.com" >
+                <input type="email" id="email" name="email" placeholder="Enter email address" value="{{old('email')}}" >
                 <span class="error">@error('email') {{$message}} @enderror</span>
             </div>
             <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" value="12345678" placeholder="Enter password" >
-                <span class="error">@error('password') {{$message}} @enderror</span>
+                <label for="email">New Password</label>
+                <input type="email" id="email" name="email" placeholder="Enter new password" value="{{old('email')}}" >
+                <span class="error">@error('email') {{$message}} @enderror</span>
             </div>
-            <div class="forgot-password">
-                <a href="{{url ('admin/forgot')}}">Forgot password?</a>
+            <div class="input-group">
+                <label for="email">Confirm Password</label>
+                <input type="email" id="email" name="email" placeholder="Enter confirm password" value="{{old('email')}}" >
+                <span class="error">@error('email') {{$message}} @enderror</span>
             </div>
+            
             <div class="login-btn">
-                <button>Login</button>
+                <button>Reset Password</button>
             </div>
         </form>
     </div>

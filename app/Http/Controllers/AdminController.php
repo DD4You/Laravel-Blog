@@ -10,6 +10,8 @@ use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
@@ -53,6 +55,48 @@ class AdminController extends Controller
             } else {
                 return back()->with('fail', 'Incorrect password');
             }
+        }
+    }
+
+    public function forgot()
+    {
+        return view('admin.forgot');
+    }
+    public function reset()
+    {
+        return view('admin.reset');
+    }
+    public function forgot_password(Request $request)
+    {
+        // Validate requests
+        $request->validate([
+            'email' => 'required|email'
+        ]);
+        $userInfo = User::where('email', '=', $request->email)->first();
+        if (!$userInfo) {
+            return back()->with('msg', 'We do not recognize your email address');
+        } else {
+
+            $token = Str::random(30);
+
+
+            $to_name = $userInfo->name;
+            $to_email = $request->email;
+
+            $html = 'A test mail 5';
+            
+            
+            //send email
+            $subject = 'Test Subject';
+            Mail::html(
+                $html,
+                function ($message) use ($to_email, $to_name, $subject) {
+                    $message
+                        ->to($to_email, $to_name)
+                        ->subject($subject);
+                }
+            );
+            return back()->with('msg', 'Password Reset Link send Successfully.');
         }
     }
 
