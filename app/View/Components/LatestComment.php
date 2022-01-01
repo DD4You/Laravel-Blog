@@ -24,7 +24,7 @@ class LatestComment extends Component
      */
     public function render()
     {
-        $comments = Comment::limit(5)
+        $comments = Comment::with('post')->limit(5)
             ->latest()
             ->get();
         return view('components.latest-comment', compact('comments'));
