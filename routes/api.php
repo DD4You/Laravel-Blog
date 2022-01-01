@@ -15,11 +15,15 @@ use App\Http\Controllers\ApiController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    //All secure URL's
+    Route::get('post/{id?}', [ApiController::class, 'post']);
+    Route::get('category/{id?}', [ApiController::class, 'category']);
+    Route::get('search/{s}', [ApiController::class, 'search']);
+    Route::post('add_comment', [ApiController::class, 'add_comment']);
 });
 
-Route::get('post/{id?}', [ApiController::class,'post']);
-Route::get('category/{id?}', [ApiController::class,'category']);
-Route::get('search/{s}',[ApiController::class,'search']);
-Route::post('add_comment',[ApiController::class,'add_comment']);
+
+
+Route::post("login", [ApiController::class, 'index']);
