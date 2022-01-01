@@ -3,7 +3,8 @@
     <ul>
         @foreach ($categories as $category)
             <li>
-                <a href="{{url('/category/'.$category->id)}}"><i class="fas fa-band-aid"></i> {{$category->name}} ({{$category->count}})</a>
+                <a href="{{ url('/category/' . $category->id) }}"><i class="fas fa-band-aid"></i> {{ $category->name }}
+                    ({{ $category->posts->count() }})</a>
             </li>
         @endforeach
     </ul>

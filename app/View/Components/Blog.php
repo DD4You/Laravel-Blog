@@ -19,8 +19,8 @@ class Blog extends Component
     public $title = '';
     public $slug = '';
     public $description = '';
-    public $category = '';
-    public $commentCount = 0;
+    public $category;
+    public $comments;
     public $timeToRead = 0;
     
     public function __construct($imageLeft, $post)
@@ -33,7 +33,7 @@ class Blog extends Component
         $this->slug = $post->slug;
         $this->description = Str::substr($post->description, 0, 180). '...';
         $this->category = $post->category;
-        $this->commentCount = $post->count;
+        $this->comments = $post->comments->count();
         $this->timeToRead = round(0.0032 * Str::length($post->description));
     }
 

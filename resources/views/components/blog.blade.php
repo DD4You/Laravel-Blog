@@ -14,7 +14,8 @@
                             {{ $title }}
                         </a>
                     </h2>
-                    <div>{{ $category }} | {{ $commentCount }} Comments | {{ $timeToRead }} to read</div>
+                    <div><a class="text-decoration-none" href="{{ url('category/' . $category->id) }}">{{ $category->name }}</a> |
+                        {{ $comments }} Comments | {{ $timeToRead }} to read</div>
                     <div class="content justify">
                         {!! html_entity_decode($description) !!}
                     </div>
@@ -43,7 +44,8 @@
                             {{ $title }}
                         </a>
                     </h2>
-                    <div>{{ $category }} | {{ $commentCount }} Comments | {{ $timeToRead }} to read</div>
+                    <div><a class="text-decoration-none" href="{{ url('category/' . $category->id) }}">{{ $category->name }}</a> |
+                        {{ $comments }} Comments | {{ $timeToRead }} to read</div>
                     <div class="content justify">
                         {!! html_entity_decode($description) !!}
                     </div>

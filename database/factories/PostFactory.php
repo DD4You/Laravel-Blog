@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\User;
 use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -20,7 +21,7 @@ class PostFactory extends Factory
         $title = $this->faker->text(50);
         return [
             'category_id' => Category::all()->random()->id,
-            'user_id' => 0,
+            'user_id' => User::all()->random()->id,
             'thumbnail' => 'post-img.webp',
             'title' => $title,
             'slug' => SlugService::createSlug(Post::class, 'slug', $title),

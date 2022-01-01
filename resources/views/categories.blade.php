@@ -8,7 +8,7 @@
                 <div class="col-md-4 col-sm-6">
                     <a href="{{ url('category/' . $category->id) }}" class="category">
                         <h3 class="name">{{ $category->name }}</h3>
-                        <h5 class="post_count">{{ $category->count }}
+                        <h5 class="post_count">{{ $category->posts->count() }}
                             <span>Post</span>
                         </h5>
                     </a>

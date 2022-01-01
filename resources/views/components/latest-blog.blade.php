@@ -7,7 +7,7 @@
                 <img width="70" height="50" class="post_image" src="{{ asset('uploads/post/' . $blog->thumbnail) }}" alt="">
             </a>
             <div class="content">
-                <a href="{{url('post/'.$blog->slug)}}" class="post_title">{{Str::substr($blog->title, 0, 35). '...'}}</a>
+                <a href="{{url('post/'.$blog->slug)}}" class="post_title">{{Str::substr($blog->title, 0, 30). '...'}}</a>
                 <div class="description">
                     {!! Str::substr($blog->description, 0, 68). '...' !!} 
                 </div>

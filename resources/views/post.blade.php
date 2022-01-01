@@ -23,7 +23,7 @@
         </div>
         <div class="col-md-12 full_post_comment" data-aos="fade-down-right">
             <!-- Comment -->
-            @foreach ($comments as $comment)
+            @foreach ($post->comments as $comment)
                 <div class="comment_box mt-3">
                     <div class="comment">{{ $comment->comment }}</div>
                     <div class="comment_by">Unknown</div>
