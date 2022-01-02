@@ -19,9 +19,10 @@ class AdminController extends Controller
     public function dashboard()
     {
         // $data = User::where('id', '=', session('LoggedUser'))->first();
-        $data['posts'] = Post::all()->count();
-        $data['categories'] = Category::all()->count();
-        $data['comments'] = Comment::all()->count();
+        $data['posts'] = Post::all(['id'])->count();
+        $data['categories'] = Category::all(['id'])->count();
+        $data['comments'] = Comment::all(['id'])->count();
+
         return view('admin.dashboard', compact('data'));
     }
 
@@ -84,8 +85,8 @@ class AdminController extends Controller
             $to_email = $request->email;
 
             $html = 'A test mail 5';
-            
-            
+
+
             //send email
             $subject = 'Test Subject';
             Mail::html(
@@ -102,7 +103,7 @@ class AdminController extends Controller
 
     public function categories()
     {
-        $data = Category::paginate(5);
+        $data = Category::paginate(5, ['id', 'name']);
         return view('admin.categories', compact('data'));
     }
 
@@ -140,7 +141,7 @@ class AdminController extends Controller
     }
     public function posts()
     {
-        $data = Post::paginate(4);
+        $data = Post::paginate(4, ['id', 'thumbnail', 'title', 'description']);
         return view('admin.posts', compact('data'));
     }
     public function delete_post($id)
@@ -154,15 +155,14 @@ class AdminController extends Controller
     }
     public function add_post()
     {
-        $categories = Category::all();
+        $categories = Category::all(['id', 'name']);
         return view('admin.add_post', compact('categories'));
     }
     public function edit_post($id)
     {
-        // $categories = Category::all();
         $post = Post::find($id);
 
-        $data['categories'] = Category::all();
+        $data['categories'] = Category::all(['id', 'name']);
         $data['post'] = Post::find($id);
         return view('admin.edit_post', compact('data'));
     }

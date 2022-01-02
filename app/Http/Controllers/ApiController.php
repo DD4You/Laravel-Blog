@@ -15,7 +15,7 @@ class ApiController extends Controller
     public function index(Request $request)
     {
         $user = User::where('email', $request->email)->first();
-        
+
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response([
                 'message' => ['These credentials do not match our records.']
@@ -35,37 +35,32 @@ class ApiController extends Controller
     public function post($id = null)
     {
         if ($id) {
-            return Post::with('category', 'comments')
-                ->where('posts.id', '=', $id)->first();
+            return Post::with('category:id,name', 'comments:post_id,comment,updated_at')
+                ->where('id', '=', $id)
+                ->first(['id', 'category_id', 'thumbnail', 'title', 'slug', 'description']);
         } else {
-
-            //     ->select('posts.id', 'posts.thumbnail', 'posts.title', 'posts.description', 'posts.created_at', 'categories.name as category', DB::raw('count(comments.id) as total_comment'))
-
-            return Post::with('category', 'comments')
-                ->latest('posts.created_at')
-                ->paginate(5);
+            return Post::with('category:id,name', 'comments:post_id,comment,updated_at')
+                ->latest('created_at')
+                ->paginate(5, ['id', 'category_id', 'thumbnail', 'title', 'slug', 'description']);
         }
     }
     public function category($id = null)
     {
         if ($id) {
-
-            //     ->select('posts.id', 'posts.thumbnail', 'posts.title', 'posts.description', 'posts.created_at', 'categories.name as category', DB::raw('count(comments.id) as total_comment'))
-
-            return Post::with('category', 'comments')
-                ->where('posts.category_id', '=', $id)
-                ->paginate(5);
+            return Post::with('category:id,name', 'comments:post_id,comment,updated_at')
+                ->where('category_id', '=', $id)
+                ->paginate(5, ['id', 'category_id', 'thumbnail', 'title', 'slug', 'description']);
         } else {
-            return Category::all();
+            return Category::all(['id', 'name']);
         }
     }
 
     public function search($s)
     {
-        $posts = Post::with('category', 'comments')
+        $posts = Post::with('category:id,name', 'comments:post_id,comment,updated_at')
             ->where('posts.title', 'LIKE', '%' . $s . '%')
             ->latest('posts.created_at')
-            ->paginate(5);
+            ->paginate(5, ['id', 'category_id', 'thumbnail', 'title', 'slug', 'description']);
         if ($posts->count()) {
             return $posts;
         } else {

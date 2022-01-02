@@ -31,8 +31,7 @@ class SeoMetaTags extends Component
         if (Route::current()->uri() == "post/{slug}") {
 
             $post = Post::where('slug', request()->segment(2))
-                ->select('title', 'description', 'thumbnail')
-                ->first();
+                ->first(['title', 'description', 'thumbnail']);
 
             $this->title = $post->title;
             $this->description = strip_tags($post->description);

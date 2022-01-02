@@ -24,7 +24,7 @@ class SideCategories extends Component
      */
     public function render()
     {
-        $categories = Category::all();
+        $categories = Category::with('posts:category_id')->get(['id', 'name']);
         return view('components.side-categories', compact('categories'));
     }
 }

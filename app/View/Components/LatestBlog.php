@@ -24,7 +24,7 @@ class LatestBlog extends Component
      */
     public function render()
     {
-        $blogs = Post::limit(5)->latest()->get();
+        $blogs = Post::limit(5)->latest()->get(['title', 'slug', 'thumbnail', 'description']);
         return view('components.latest-blog', compact('blogs'));
     }
 }

@@ -37,10 +37,9 @@ class Handler extends ExceptionHandler
         $this->renderable(function (Throwable $e, $request) {
             if ($request->is('api/*')) {
                 return response()->json([
-                    'message' => 'Unauthenticated Access'
-                ], 401);
+                    'message' => $e->getMessage()
+                ], $e->getCode() ? : 400);
             }
         });
-        
     }
 }

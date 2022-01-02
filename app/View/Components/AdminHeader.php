@@ -13,13 +13,13 @@ class AdminHeader extends Component
      * @return void
      */
 
-     public $name;
-     public $email;
+    public $name;
+    public $email;
 
     public function __construct()
     {
         //
-        $data = User::where('id', '=', session('LoggedUser'))->first();
+        $data = User::where('id', '=', session('LoggedUser'))->first(['id', 'name', 'email']);
         $this->name = $data->name;
         $this->email = $data->email;
     }

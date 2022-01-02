@@ -130,12 +130,12 @@
             @csrf
             <div class="input-group">
                 <label for="email">Email ID</label>
-                <input type="email" id="email" name="email" placeholder="Enter email id" value="admin@test.com" >
+                <input type="email" id="email" name="email" placeholder="Enter email id" value="info@dd4you.in" >
                 <span class="error">@error('email') {{$message}} @enderror</span>
             </div>
             <div class="input-group">
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password" value="12345678" placeholder="Enter password" >
+                <input type="password" name="password" id="password" value="password" placeholder="Enter password" >
                 <span class="error">@error('password') {{$message}} @enderror</span>
             </div>
             <div class="forgot-password">
