@@ -147,6 +147,8 @@ class AdminController extends Controller
     public function delete_post($id)
     {
         $data = Post::find($id);
+        # Delete Image
+        unlink("uploads/post/" . $data->thumbnail);
         if ($data->delete()) {
             return back()->with('msg', 'Delete Successfully.');
         } else {
