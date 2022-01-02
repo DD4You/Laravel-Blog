@@ -30,6 +30,10 @@ Route::prefix('admin')->group(function () {
     Route::post('/forgot_password', [AdminController::class, 'forgot_password'])->name('admin.forgot_password');
 
     Route::get('/reset', [AdminController::class, 'reset']);
+
+    Route::get('/', function () {
+        return redirect('admin/login');
+    });
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['AuthCheck']], function () {
@@ -48,4 +52,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['AuthCheck']], function () {
     Route::get('/delete_post/{id}', [AdminController::class, 'delete_post']);
     Route::get('/add_post', [AdminController::class, 'add_post']);
     Route::get('/edit_post/{id}', [AdminController::class, 'edit_post']);
+
+    Route::get('/', function () {
+        return redirect('admin/dashboard');
+    });
 });
+
+

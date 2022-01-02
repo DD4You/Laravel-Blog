@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Post;
-use App\Models\User;
+use App\Models\AdminUser;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -18,7 +18,7 @@ class AdminController extends Controller
     //
     public function dashboard()
     {
-        // $data = User::where('id', '=', session('LoggedUser'))->first();
+        // $data = User::where('id', '=', session('LoggedAdminUser'))->first();
         $data['posts'] = Post::all(['id'])->count();
         $data['categories'] = Category::all(['id'])->count();
         $data['comments'] = Comment::all(['id'])->count();
@@ -28,8 +28,8 @@ class AdminController extends Controller
 
     public function logout()
     {
-        if (session()->has('LoggedUser')) {
-            session()->pull('LoggedUser');
+        if (session()->has('LoggedAdminUser')) {
+            session()->pull('LoggedAdminUser');
             return redirect('/admin/login');
         }
     }
@@ -46,12 +46,12 @@ class AdminController extends Controller
             'password' => 'required|min:5|max:12'
         ]);
 
-        $userInfo = User::where('email', '=', $request->email)->first();
+        $userInfo = AdminUser::where('email', '=', $request->email)->first();
         if (!$userInfo) {
             return back()->with('fail', 'We do not recognize your email address');
         } else {
             if (Hash::check($request->password, $userInfo->password)) {
-                $request->session()->put('LoggedUser', $userInfo->id);
+                $request->session()->put('LoggedAdminUser', $userInfo->id);
                 return redirect('admin/dashboard');
             } else {
                 return back()->with('fail', 'Incorrect password');
@@ -73,7 +73,7 @@ class AdminController extends Controller
         $request->validate([
             'email' => 'required|email'
         ]);
-        $userInfo = User::where('email', '=', $request->email)->first();
+        $userInfo = AdminUser::where('email', '=', $request->email)->first();
         if (!$userInfo) {
             return back()->with('msg', 'We do not recognize your email address');
         } else {
