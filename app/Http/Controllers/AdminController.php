@@ -150,7 +150,7 @@ class AdminController extends Controller
     {
         $data = Post::find($id);
         # Delete Image
-        unlink("uploads/post/" . $data->thumbnail);
+        Storage::disk('public')->delete('post/' . $data->thumbnail);
         if ($data->delete()) {
             return back()->with('msg', 'Delete Successfully.');
         } else {
@@ -181,13 +181,14 @@ class AdminController extends Controller
             'description' => 'required'
         ]);
 
-        $thumbnail = time() . '_' . $request->thumbnail->getClientOriginalName();
+        $file = $request->thumbnail;
+        $extension = $file->getClientOriginalExtension();
+        $thumbnail = time() . $extension;
 
-        $postImg = Image::make($request->thumbnail)->resize(512, null, function ($constraint) {
+        $postImg = Image::make()->resize(512, null, function ($constraint) {
             $constraint->aspectRatio();
             $constraint->upsize();
-        })->stream();
-
+        })->stream($extension);
         Storage::disk('public')->put('post/' . $thumbnail, $postImg);
 
         $data = new Post;
@@ -214,11 +215,19 @@ class AdminController extends Controller
                 'thumbnail' => 'required|mimes:png,jpg,jpeg|max:2048|dimensions:ratio=2/1',
             ]);
             $data = Post::find($request->id);
+
             # Delete Old Image
-            unlink("uploads/post/" . $data->thumbnail);
-            # Update Image
-            $thumbnail = time() . '_' . $request->thumbnail->getClientOriginalName();
-            $request->thumbnail->move('uploads/post', $thumbnail);
+            Storage::disk('public')->delete('post/' . $data->thumbnail);
+
+            # Upload new Image
+            $file = $request->thumbnail;
+            $extension = $file->getClientOriginalExtension();
+            $thumbnail = time() . $extension;
+            $postImg = Image::make($file)->resize(512, null, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })->stream($extension);
+            Storage::disk('public')->put('post/' . $thumbnail, $postImg);;
             $data->thumbnail = $thumbnail;
         } else {
             $data = Post::find($request->id);
