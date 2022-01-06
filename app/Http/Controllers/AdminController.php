@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
 
 class AdminController extends Controller
 {
@@ -175,14 +176,19 @@ class AdminController extends Controller
         // Validate requests
         $request->validate([
             'category_id' => 'required',
-            // 'thumbnail' => 'required|mimes:png,jpg,jpeg|max:2048|dimensions:ratio=2/1',
             'thumbnail' => 'required|mimes:png,jpg,jpeg|max:2048',
             'title' => 'required',
             'description' => 'required'
         ]);
 
         $thumbnail = time() . '_' . $request->thumbnail->getClientOriginalName();
-        $request->thumbnail->storeAs('post', $thumbnail, 'public');
+
+        $postImg = Image::make($request->thumbnail)->resize(512, null, function ($constraint) {
+            $constraint->aspectRatio();
+            $constraint->upsize();
+        })->stream();
+
+        Storage::disk('public')->put('post/' . $thumbnail, $postImg);
 
         $data = new Post;
         $data->thumbnail = $thumbnail;
