@@ -4,7 +4,7 @@
     @foreach ($blogs as $blog)
         <div class="post_box">
             <a href="{{url('post/'.$blog->slug)}}">
-                <img width="70" height="50" class="post_image" src="{{ asset('uploads/post/' . $blog->thumbnail) }}" alt="">
+                <img width="70" height="50" class="post_image" src="{{ asset('storage/post/' . $blog->thumbnail) }}" alt="">
             </a>
             <div class="content">
                 <a href="{{url('post/'.$blog->slug)}}" class="post_title">{{Str::substr($blog->title, 0, 30). '...'}}</a>

@@ -25,7 +25,7 @@
                                     <tr>
                                         <td>{{ $item->id }}</td>
                                         <td>
-                                            <img src="{{ asset('uploads/post/' . $item->thumbnail) }}" width="80" height="56"
+                                            <img src="{{ asset('storage/post/' . $item->thumbnail) }}" width="80" height="56"
                                                 alt="thumbnail">
                                         </td>
                                         <td>{{ $item->title }}</td>

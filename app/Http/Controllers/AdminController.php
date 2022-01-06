@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class AdminController extends Controller
@@ -174,13 +175,14 @@ class AdminController extends Controller
         // Validate requests
         $request->validate([
             'category_id' => 'required',
-            'thumbnail' => 'required|mimes:png,jpg,jpeg|max:2048|dimensions:ratio=2/1',
+            // 'thumbnail' => 'required|mimes:png,jpg,jpeg|max:2048|dimensions:ratio=2/1',
+            'thumbnail' => 'required|mimes:png,jpg,jpeg|max:2048',
             'title' => 'required',
             'description' => 'required'
         ]);
 
         $thumbnail = time() . '_' . $request->thumbnail->getClientOriginalName();
-        $request->thumbnail->move('uploads/post', $thumbnail);
+        $request->thumbnail->storeAs('post', $thumbnail, 'public');
 
         $data = new Post;
         $data->thumbnail = $thumbnail;
